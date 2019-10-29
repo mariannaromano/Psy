@@ -13,6 +13,12 @@ count=0
 def ttoggle(value):
     value=str(not eval(value))
     return value
+def validate(a):
+    if len(a)>=5:
+        return True
+    else:
+        return False
+    
 
 class Titolo:
     
@@ -116,15 +122,21 @@ def main():
                 else:
                      print ("file non trovato")
             elif partet[:1] == "a": #a (params: title) >>> aggiunge un todo
-                a,tit = partet.split()            
-                myobjectx = Titolo()
-                myobjectx.title=tit
-                myobjectx.add()               
+                a,tit = partet.split()
+                if validate(tit):
+                    myobjectx = Titolo()
+                    myobjectx.title=tit
+                    myobjectx.add()
+                else:
+                    print ("titolo non valido!")
             elif partet[:1] == "e": #e (params: id, title) >>> edita un todo
                 a,id,strtit = partet.split()
-                myobjectx = Titolo()
-                myobjectx.id=id
-                myobjectx.replace(strtit)
+                if validate(strtit):
+                    myobjectx = Titolo()
+                    myobjectx.id=id
+                    myobjectx.replace(strtit)
+                else:
+                    print ("titolo non valido!")
             elif partet[:1] == "d": #d (params: id) >>> cancella un todo
                 a,id = partet.split()
                 myobjectx = Titolo()
